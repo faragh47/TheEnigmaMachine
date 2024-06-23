@@ -13,5 +13,4 @@ keyboad = new CharKeyboard('.');
 Console.WriteLine(plugboard.Process(keyboad).Output);
 
 Plugboard wrongPlugboard = new Plugboard("3ABCDEFGHIJKLMNOPQRSTZ");
-var isValid = wrongPlugboard.IsValid();
-Console.WriteLine($"{isValid.Item1} : {isValid.Item2} ");
+Console.WriteLine(plugboard.Process(keyboad).Output);

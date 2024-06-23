@@ -10,6 +10,6 @@ namespace TheEnigmaMachine
     public interface IPlugboard<Keyboard, Lampboard>
     {
         public Lampboard Process(Keyboard input);
-        public Tuple<bool, string> IsValid();
+        public IEnumerable<Tuple<bool, string>> IsValid();
     }
 }

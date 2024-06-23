@@ -24,17 +24,18 @@ namespace Test
         }
 
         [Theory]
-        [InlineData(false, "3ABCDEFGHIJKLMNOPQRSTZ")]
-        public void Test_Plugboard_Is_Valid_Wire(bool isValid, string wire)
+        [InlineData("3ABCDEFGHIJKLMNOPQRSTZ")]
+        [InlineData("AAAAAFGHIJKLAAAAAAAATZ")]
+        public void Test_Plugboard_Is_Valid_Wire(string wire)
         {
             // Arrange
-            Plugboard wrongPlugboard = new Plugboard("3ABCDEFGHIJKLMNOPQRSTZ");
+            Plugboard wrongPlugboard = new Plugboard(wire);
 
             // Act
             var validity = wrongPlugboard.IsValid();
-
+            var IsExistFalse = !validity.Any(x => x.Item1.Equals(false));
             // Assert
-            Assert.Equal(validity.Item1, isValid);
+            Assert.Equal(IsExistFalse, false);
         }
     }
 }

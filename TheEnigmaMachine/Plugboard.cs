@@ -26,13 +26,16 @@ namespace TheEnigmaMachine
                     Wires.Add(chars[i], chars[i]);
                 }
                 else
+                {
                     Wires.Add(chars[i], chars[i + 1]);
+                }
             }
         }
 
-        public Tuple<bool, string> IsValid()
+        public IEnumerable<Tuple<bool, string>> IsValid()
         {
-            return new Tuple<bool, string>(Wire.ContainsOnlyLetters(), "Wire contain invalid charecters");
+            yield return new Tuple<bool, string>(Wire.ContainsOnlyLetters(), "Wire contain invalid charecters");
+            yield return new Tuple<bool, string>(!Wire.IsSequentialCharactersEqual(6), "least six letters were not cross-wired");
         }
 
         public StringLampboard Process(CharKeyboard input)
