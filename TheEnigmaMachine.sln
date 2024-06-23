@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34616.47
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheEnigmaMachine", "TheEnigmaMachine\TheEnigmaMachine.csproj", "{7AE68F2A-CBB9-4B41-942B-EAD45BF5697D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{CA778623-8615-49BE-83CC-F399E2BB4129}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7AE68F2A-CBB9-4B41-942B-EAD45BF5697D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7AE68F2A-CBB9-4B41-942B-EAD45BF5697D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7AE68F2A-CBB9-4B41-942B-EAD45BF5697D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7AE68F2A-CBB9-4B41-942B-EAD45BF5697D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA778623-8615-49BE-83CC-F399E2BB4129}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA778623-8615-49BE-83CC-F399E2BB4129}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA778623-8615-49BE-83CC-F399E2BB4129}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA778623-8615-49BE-83CC-F399E2BB4129}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0A79D0B0-1F84-4574-8096-92FC8C0C8FA2}
+	EndGlobalSection
+EndGlobal
