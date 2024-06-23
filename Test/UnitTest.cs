@@ -25,7 +25,7 @@ namespace Test
 
         [Theory]
         [InlineData(false, "3ABCDEFGHIJKLMNOPQRSTZ")]
-        public void Test_Plugboard_Is_Valid(bool isValid, string wire)
+        public void Test_Plugboard_Is_Valid_Wire(bool isValid, string wire)
         {
             // Arrange
             Plugboard wrongPlugboard = new Plugboard("3ABCDEFGHIJKLMNOPQRSTZ");
