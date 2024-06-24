@@ -25,8 +25,8 @@ public static class Utility
                 counter = 0;
             }
             if (counter == length)
-                return false;
+                return false;// All characters are equal
         }
-        return true; // All characters are equal
+        return true; 
     }
 }

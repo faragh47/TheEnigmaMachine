@@ -6,10 +6,12 @@ namespace Test
     {
 
         [Theory]
-        [InlineData('A', "B", "ABCDEFGHIJKLMNOPQRSTZ")]
-        [InlineData('B', "A", "ABCDEFGHIJKLMNOPQRSTZ")]
-        [InlineData('X', "X", "ABCDEFGHIJKLMNOPQRSTZ")]
-        [InlineData('.', ".", "ABCDEFGHIJKLMNOPQRSTZ")]
+        [InlineData('A', "B", "ABCDEFGHIJKLMNOPQRST")]
+        [InlineData('B', "A", "ABCDEFGHIJKLMNOPQRST")]
+        [InlineData('X', "X", "ABCDEFGHIJKLMNOPQRST")]
+        [InlineData('.', ".", "ABCDEFGHIJKLMNOPQRST")]
+        [InlineData('H', "G", "ABCDEFGHIJKLMNOPQRST")]
+        [InlineData('G', "H", "ABCDEFGHIJKLMNOPQRST")]
         public void Test_Plugboard_Process_Shoud_Correct(char input, string output, string wire)
         {
             // Arrange
@@ -26,16 +28,16 @@ namespace Test
         [Theory]
         [InlineData("3ABCDEFGHIJKLMNOPQRSTZ")]
         [InlineData("AAAAAFGHIJKLAAAAAAAATZ")]
-        public void Test_Plugboard_Is_Valid_Wire(string wire)
+        [InlineData("ABCDEFGHIJKLMNOPQRSTZ")]
+        public void Test_Plugboard_Has_InValid_Wire(string wire)
         {
             // Arrange
             Plugboard wrongPlugboard = new Plugboard(wire);
 
             // Act
-            var validity = wrongPlugboard.IsValid();
-            var IsExistFalse = !validity.Any(x => x.Item1.Equals(false));
+            var isValid = wrongPlugboard.IsValid();
             // Assert
-            Assert.Equal(IsExistFalse, false);
+            Assert.Equal(isValid, false);
         }
     }
 }

@@ -10,6 +10,8 @@ namespace TheEnigmaMachine
     {
         private readonly string Wire;
         public List<Wire> Wires { get; set; }
+        private const int MAX_SEQUENTIAL_CHARACTERS = 6;
+        private const int MAX_WIRE_COUNT = 10;
         public Plugboard(string wire)
         {
             Wire = wire;
@@ -32,17 +34,22 @@ namespace TheEnigmaMachine
             }
         }
 
-        public IEnumerable<Tuple<bool, string>> IsValid()
+        public bool IsValid()
         {
-            yield return new Tuple<bool, string>(Wire.ContainsOnlyLetters(), "Wire contain invalid charecters");
-            yield return new Tuple<bool, string>(!Wire.IsSequentialCharactersEqual(6), "least six letters were not cross-wired");
+            var hasValidCharacters = Wire.ContainsOnlyLetters();
+            var hasValidSequentialCharacters = Wire.IsSequentialCharactersEqual(MAX_SEQUENTIAL_CHARACTERS);
+            var hasValidWireCount = Wires is { Count: <= MAX_WIRE_COUNT };
+            return hasValidCharacters & hasValidSequentialCharacters & hasValidWireCount;
         }
 
         public StringLampboard Process(CharKeyboard input)
         {
+            if (IsValid() is false)
+                throw new ApplicationException("Invalid Wire");
+
             var output = new StringLampboard();
             var existInValue = Wires.FirstOrDefault(x => x.Key == input.Input);
-            var value= existInValue?.Value;
+            var value = existInValue?.Value;
             output.Output = !string.IsNullOrEmpty(value.ToString()) ? value.ToString() : string.Empty;
             var existInKey = Wires.FirstOrDefault(x => x.Value == input.Input);
             var key = existInKey?.Key;
