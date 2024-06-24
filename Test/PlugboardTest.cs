@@ -2,7 +2,7 @@ using TheEnigmaMachine;
 
 namespace Test
 {
-    public class UnitTest
+    public class PlugboardTest
     {
 
         [Theory]
