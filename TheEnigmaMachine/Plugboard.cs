@@ -14,7 +14,7 @@ namespace TheEnigmaMachine
         {
             get
             {
-                var hasValidCharacters = !Wire.ContainsOnlyLetters();
+                var hasValidCharacters = Wire.ContainsOnlyLetters();
                 var hasValidSequentialCharacters = Wire.IsSequentialCharactersEqual(MAX_SEQUENTIAL_CHARACTERS);
                 var hasValidWireCount = Wires is { Count: <= MAX_WIRE_COUNT };
                 return hasValidCharacters & hasValidSequentialCharacters & hasValidWireCount;
