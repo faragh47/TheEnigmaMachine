@@ -8,6 +8,6 @@ namespace TheEnigmaMachine
 {
     public interface IValidator
     {
-        public bool IsValid();
+        public bool IsValidWire { get; }
     }
 }

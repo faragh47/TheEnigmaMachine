@@ -35,7 +35,7 @@ namespace Test
             Plugboard wrongPlugboard = new Plugboard(wire);
 
             // Act
-            var isValid = wrongPlugboard.IsValid();
+            var isValid = wrongPlugboard.IsValidWire();
             // Assert
             Assert.Equal(isValid, false);
         }
