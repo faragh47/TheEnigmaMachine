@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TheEnigmaMachine
+namespace TheEnigmaMachine.Interfaces
 {
-    public class StringLampboard : ILampboard<string>
+    public interface IValidator
     {
-        public string Output { get; set; }
+        public bool CheckInstructionIsValid(string instruction);
     }
 }

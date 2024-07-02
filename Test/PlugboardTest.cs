@@ -1,4 +1,4 @@
-using TheEnigmaMachine;
+using TheEnigmaMachine.Entities;
 
 namespace Test
 {
@@ -12,15 +12,12 @@ namespace Test
         [InlineData('.', ".", "ABCDEFGHIJKLMNOPQRST")]
         [InlineData('H', "G", "ABCDEFGHIJKLMNOPQRST")]
         [InlineData('G', "H", "ABCDEFGHIJKLMNOPQRST")]
-        public void Test_Plugboard_Process_Shoud_Correct(char input, string output, string wire)
+        public void Test_Plugboard_Process_Shoud_Correct(char input, string output, string instruction)
         {
             // Arrange
-            Plugboard plugboard = new Plugboard(wire);
-            CharKeyboard keyboadA = new CharKeyboard(input);
-
+            Plugboard plugboard = new Plugboard(instruction);
             // Act
-            var outputA = plugboard.Process(keyboadA).Output;
-
+            var outputA = plugboard.Process(input);
             // Assert
             Assert.Equal(output, outputA.ToString());
         }
@@ -29,15 +26,14 @@ namespace Test
         [InlineData("3ABCDEFGHIJKLMNOPQRSTZ")]
         [InlineData("AAAAAFGHIJKLAAAAAAAATZ")]
         [InlineData("ABCDEFGHIJKLMNOPQRSTZ")]
-        public void Test_Plugboard_Has_InValid_Wire(string wire)
+        public void Test_Plugboard_Has_InValid_Wire(string instruction)
         {
             // Arrange
-            Plugboard wrongPlugboard = new Plugboard(wire);
-
+            PlugboardConfiguration wrongPlugboard = new PlugboardConfiguration();
             // Act
-            var isValid = wrongPlugboard.IsValidWire;
+            wrongPlugboard.config(instruction);
             // Assert
-            Assert.Equal(isValid, false);
+            Assert.Equal(wrongPlugboard.IsValidInstruction, false);
         }
     }
 }

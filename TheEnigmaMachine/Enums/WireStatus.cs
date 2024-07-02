@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TheEnigmaMachine
+namespace TheEnigmaMachine.Enums
 {
-    public interface IValidator
+    public enum WireStatus
     {
-        public bool IsValidWire { get; }
+        InComplete,
+        Complete
     }
 }

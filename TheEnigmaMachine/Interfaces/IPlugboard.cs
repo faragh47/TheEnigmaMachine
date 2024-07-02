@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TheEnigmaMachine
+namespace TheEnigmaMachine.Interfaces
 {
-    public interface IPlugboard<Keyboard, Lampboard>: IValidator
+    public interface IPlugboardOperation
     {
-        public Lampboard Process(Keyboard input);
+        public string Process(char input);
     }
 }

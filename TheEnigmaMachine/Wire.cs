@@ -3,17 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TheEnigmaMachine.Entities;
+using TheEnigmaMachine.Enums;
 
 namespace TheEnigmaMachine
 {
     public record Wire
     {
-        public Wire(char key, char value)
+        public Wire(Punch destination, Punch origin)
         {
-            Key = key;
-            Value = value;
+            Origin = origin;
+            Destination = destination;
+            if (Origin is not null && Destination is not null)
+                Status = WireStatus.Complete;
         }
-        public char Key { get; set; }
-        public char Value { get; set; }
+        public Punch Origin { get; set; }
+        public Punch Destination { get; set; }
+        public WireStatus Status { get; set; } = WireStatus.InComplete;
     }
 }
