@@ -1,3 +1,4 @@
+using System.Drawing;
 using TheEnigmaMachine.Entities;
 
 namespace Test
@@ -34,6 +35,25 @@ namespace Test
             wrongPlugboard.config(instruction);
             // Assert
             Assert.Equal(wrongPlugboard.IsValidInstruction, false);
+        }
+
+        [Fact]
+        public void Test_Rotor_Process_Shoud_Correct()
+        {
+            Rotor rotor = new Rotor("I", "EKMFLGDQVZNTOWYHXUSPAIBRCJ", "Q", 'Z', 'O');
+            TestRotor(rotor, 'A', 'H', true);
+            TestRotor(rotor, 'B', 'B', false);
+            TestRotor(rotor, 'C', 'I', false);
+            TestRotor(rotor, '.', '.', false);
+            TestRotor(rotor, 'D', 'I', false);
+            TestRotor(rotor, 'E', 'I', false);
+            TestRotor(rotor, 'F', 'J', false);
+        }
+        private void TestRotor(Rotor rotor, char input, char expectedOutput, bool expectedNotch)
+        {
+            var result = rotor.Process(input, true);
+            Assert.Equal(expectedOutput, result.Item1);
+            Assert.Equal(expectedNotch, result.Item2);
         }
     }
 }

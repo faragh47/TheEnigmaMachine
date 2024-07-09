@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace TheEnigmaMachine.Enums
 {
-    public enum WireStorageStatus
+    public enum PlugboardStatus
     {
         Initial,
         InComplete,
-        Proccessing,
         Complete
     }
 }

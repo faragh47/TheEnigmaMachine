@@ -8,24 +8,34 @@ using TheEnigmaMachine.Interfaces;
 
 namespace TheEnigmaMachine.Entities
 {
-    public class Plugboard : IPlugboardOperation
+    public class Plugboard 
     {
-        public AlphabetPunch AlphabetPunch { get; set; }
-        public WireStorage WireStorage { get; set; }
-        private PlugboardConfiguration PlugboardConfiguration { get; set; }
+        public List<Punch> Punches { get; private set; }
+        public PlugboardStatus Status { get; private set; }
+        public List<Wire> Wires { get; set; }
         public Plugboard(string instruction)
         {
-            WireStorage = new();
-            PlugboardConfiguration = new PlugboardConfiguration(WireStorage);
-            PlugboardConfiguration.config(instruction);
+            Wires = new();
+            PlugboardConfiguration plugboardConfiguration = new PlugboardConfiguration(Wires, Status);
+            plugboardConfiguration.config(instruction);
+            if (plugboardConfiguration.IsValidInstruction is false)
+                throw new ApplicationException("Invalid Instruction");
+            Init();
+        }
+
+        private void Init()
+        {
+            Punches = new();
+            for (char c = 'a'; c <= 'z'; c++)
+            {
+                Punches.Add(new Punch(c));
+            }
         }
 
         public string Process(char punch)
         {
-            if (PlugboardConfiguration.IsValidInstruction is false)
-                throw new ApplicationException("Invalid Instruction");
             var input = new Punch(punch);
-            var existInOrigin = WireStorage.Wires
+            var existInOrigin = Wires
                                     .Where(x => x.Status == WireStatus.Complete).
                                      FirstOrDefault(x => x.Destination.Value == input.Value);
 
@@ -33,7 +43,7 @@ namespace TheEnigmaMachine.Entities
 
             if (string.IsNullOrEmpty(result))
             {
-                var existInDestination = WireStorage.Wires
+                var existInDestination = Wires
                                      .Where(x => x.Status == WireStatus.Complete).
                                       FirstOrDefault(x => x.Origin.Value == input.Value);
 

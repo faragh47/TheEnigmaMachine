@@ -11,16 +11,19 @@ namespace TheEnigmaMachine.Entities
 {
     public class PlugboardConfiguration : IConfiguration
     {
-        private WireStorage _wireStorage;
-        public PlugboardConfiguration(WireStorage wireStorage)
+        private const int MAX_WIRE_COUNT = 10;
+        private List<Wire> Wires;
+        private PlugboardStatus PlugboardStatus;
+        public bool IsValidInstruction { get; set; }
+        public PlugboardConfiguration(List<Wire> wires, PlugboardStatus plugboardStatus)
         {
-            _wireStorage = wireStorage;
+            Wires = wires;
+            PlugboardStatus = plugboardStatus;
         }
         public PlugboardConfiguration()
         {
-            _wireStorage = new();
+            Wires = new();
         }
-        public bool IsValidInstruction { get; set; }
         public bool CheckInstructionIsValid(string instruction)
         {
             var hasValidCharacters = instruction.ContainsOnlyLetters();
@@ -36,18 +39,28 @@ namespace TheEnigmaMachine.Entities
                 {
                     if (i + 1 > chars.Length - 1)
                     {
-                        _wireStorage.pushWire(new Wire(new Punch(chars[i]), null));
+                        pushWire(new Wire(new Punch(chars[i]), null));
                         IsValidInstruction = false;
                     }
                     else
                     {
-                        var result = _wireStorage.pushWire(new Wire(new Punch(chars[i]), new Punch(chars[i + 1])));
+                        var result = pushWire(new Wire(new Punch(chars[i]), new Punch(chars[i + 1])));
                         IsValidInstruction = IsValidInstruction & result;
                     }
+                    PlugboardStatus = PlugboardStatus.InComplete;
                 }
                 if (IsValidInstruction is true)
-                    _wireStorage.Status = WireStorageStatus.Complete;
+                    PlugboardStatus = PlugboardStatus.Complete;
             }
+        }
+        public bool pushWire(Wire wire)
+        {
+            Wires.Add(wire);
+            if (Wires is { Count: > MAX_WIRE_COUNT })
+            {
+                return false;
+            }
+            return true;
         }
 
 
